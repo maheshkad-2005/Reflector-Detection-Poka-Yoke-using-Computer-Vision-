@@ -1,0 +1,99 @@
+﻿int x;
+const int pin1 = 7;
+const int pin2 = 13;
+const int pin3 = 3;
+const int pin4 = 4;
+const int sensorPin = 9; // Assuming sensor pin is 5
+const int counterPin = 6;
+
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(pin1,OUTPUT);
+  pinMode(pin2,OUTPUT);
+  pinMode(pin3,OUTPUT);
+  pinMode(pin4,OUTPUT);
+  pinMode(sensorPin, INPUT); // Set sensor pin as input
+  pinMode(counterPin, INPUT); // Set sensor pin as input
+  pinMode(LED_BUILTIN, OUTPUT);
+
+
+
+
+  Serial.setTimeout(1);
+}
+
+
+void  loop() {
+  
+  //while (!Serial.available());
+  
+  x = Serial.readString().toInt();
+  int sensorValue = digitalRead(sensorPin);
+  int counterValue = digitalRead(counterPin);
+  
+  
+  
+  if (x==10){
+    delay(1000);
+    Serial.print(x);
+    digitalWrite(pin1, LOW);
+
+
+
+
+
+
+  }
+    if (x==11){
+    Serial.print(x);
+    delay(500); // Adjust delay time as needed
+    digitalWrite(pin2, HIGH);
+
+
+
+
+
+
+
+
+
+
+  }
+  if (x==12){
+    Serial.print(x);
+    delay(500); // Adjust delay time as needed
+    digitalWrite(pin3, HIGH);
+  
+
+
+  }
+  if (x==13){
+    Serial.print(x);
+    delay(500); // Adjust delay time as needed
+    digitalWrite(pin4, HIGH);
+ 
+  }
+
+
+//  if (counterValue == HIGH){
+//   Serial.println("99");
+//   if (sensorValue == HIGH){
+//     Serial.println("61");
+//   }
+//   delay(1000);
+//   }
+
+
+
+
+  
+  if (sensorValue == HIGH) {
+      Serial.println("sensor"); // Send sensor value over serial
+      delay(2000);
+      digitalWrite(pin1, LOW);
+      digitalWrite(pin2, LOW);
+      digitalWrite(pin3, LOW);
+      digitalWrite(pin4, LOW);
+  }
+}
